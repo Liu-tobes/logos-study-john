@@ -253,13 +253,16 @@
       <div class="panel-kicker">Intertextuality · 互涉背景</div>
       <h3 class="panel-title">${local.length ? `第 ${state.chapter} 章的经文回声` : '全书示范互涉'}</h3>
       <p class="panel-intro">${local.length ? '同一句话可能在另一卷书的回声里被重新点亮。这里列本章相关的共享词、意象与神学语法。' : '本章暂无专门的互涉卡片；以下是 1:1–5 的示范条目，帮助你看互涉如何工作。'}</p>
+      <div class="it-method"><b>分级说明</b>标签按“直接引用 / LXX 词语复用 / 预表类型 / 主题回响 / 新约内部呼应”区分。原文词条来自本项目数据；只有可核对的 LXX 短语才标“LXX 词语复用”，不把主题回响冒充成逐字引用，也不逐条假托注释书。</div>
       <div class="it-list">
         ${cards.map(item => `
           <article class="it-item">
             <div class="it-top"><span class="it-ref">${esc(item.ref)}</span><span class="it-type">${esc(item.type)}</span></div>
+            <div class="it-tags"><span class="it-parallel">${esc(item.parallelType || '未分级')}</span><span class="it-lang">${esc(item.language || (item.originalType === 'he' ? '希伯来文' : '希腊文'))}</span>${item.scope ? `<span class="it-scope">${esc(item.scope)}</span>` : ''}</div>
             ${item.original ? `<div class="it-original ${item.originalType === 'he' ? 'he' : ''}" ${item.originalType === 'he' ? 'dir="rtl"' : ''}>${esc(item.original)}</div>` : ''}
             <div class="it-cn">${esc(item.cn)}</div>
             <p class="it-note">${esc(item.note)}</p>
+            ${item.evidence ? `<div class="it-evidence"><b>判断依据</b>${esc(item.evidence)}</div>` : ''}
           </article>`).join('')}
       </div>`;
   }
