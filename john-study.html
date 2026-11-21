@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>文学肌理 · 约翰福音 1 / 3 / 6 / 13–17 | ΛΟΓΟΣ</title>
+<link rel="stylesheet" href="john.css">
+<link rel="stylesheet" href="john-literary.css">
+<link rel="stylesheet" href="john-study.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="返回研读示范">
+    <span class="brand-mark">Λ</span>
+    <span><b>ΛΟΓΟΣ · 道</b><small>LITERARY LIBRARY</small></span>
+  </a>
+  <div class="top-title"><b>文学肌理 · 约翰福音</b><small>JOHN 1–21</small></div>
+  <nav class="top-nav">
+    <a class="top-link" href="john.html">全书阅读</a>
+    <a class="top-link" href="index.html">1:1–5 示范</a>
+    <span class="type-inline" aria-label="阅读字号">
+      <span>字号</span>
+      <button type="button" data-lit-font="-1" aria-label="缩小字号">A−</button>
+      <button type="button" class="val" data-lit-font-reset title="恢复默认字号">116%</button>
+      <button type="button" data-lit-font="1" aria-label="放大字号">A+</button>
+    </span>
+  </nav>
+</header>
+
+<main class="library-page" id="studyMain"></main>
+
+<footer class="foot">
+  <b>文学肌理 · 约翰福音</b> · 原文：SBLGNT（CC BY 4.0）· 中文：和合本（CUV，公版）· 结构判断为编者整理，不替代专业释经书。<br>
+  <a href="john.html">返回全书逐词阅读</a> · <a href="index.html">1:1–5 研读示范</a>
+</footer>
+
+<script src="data/john/john-study-library.js"></script>
+<script src="data/john/john-literary-2.js"></script>
+<script src="data/john/john-literary-4.js"></script>
+<script src="data/john/john-literary-5.js"></script>
+<script src="data/john/john-literary-7.js"></script>
+<script src="data/john/john-literary-8.js"></script>
+<script src="data/john/john-literary-10.js"></script>
+<script src="data/john/john-literary-18.js"></script>
+<script src="data/john/john-literary-19.js"></script>
+<script src="data/john/john-literary-20.js"></script>
+<script src="data/john/john-literary-21.js"></script>
+<script src="data/john/john-literary-12.js"></script>
+<script src="data/john/john-literary-11.js"></script>
+<script src="data/john/john-literary-9.js"></script>
+<script src="john-gloss.js"></script>
+<script>
+(function(){
+  'use strict';
+  const DATA = window.LOGOS_STUDY_LIBRARY || {};
+  if (window.LOGOS_JOHN_LITERARY_2) DATA[2] = window.LOGOS_JOHN_LITERARY_2;
+  (window.LOGOS_JOHN_LITERARY_EXTRAS || []).forEach(extra => { if (extra && extra.n) DATA[extra.n] = extra; });
+  const $ = s => document.querySelector(s);
+  const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const chapters = [
+    {n:1, href:'john-literary.html', title:'道在结构中回响', range:'1:1–51', summary:'序言 + 见证与门徒：道从父怀里进入肉身，再把人带到人子面前。', tags:['序言','结构','关键词链','互涉'], done:true},
+    ...Object.values(DATA).map(d => ({n:d.n, href:`?chapter=${d.n}`, title:d.title, range:d.range, summary:d.summary, tags:['结构','语法','互涉','和合本'], done:false}))
+  ];
+  const n = Number(new URLSearchParams(location.search).get('chapter')) || 0;
+  const current = chapters.find(c => c.n === n);
+
+  function fontBar(){
+    return `<div class="lit-fontbar" aria-label="阅读字号"><span>字号</span><button type="button" data-lit-font="-1">A−</button><button type="button" data-lit-font-reset>116%</button><button type="button" data-lit-font="1">A+</button></div>`;
+  }
+
+  function renderLibrary(){
+    $('#studyMain').innerHTML = `
+      <section class="lit-hero">
+        <div class="kicker">Literary Texture · 约翰福音选章</div>
+        <h1>道在<em>结构</em>中回响</h1>
+        <p>第 1 章已按 1:1–5 的研读密度完成整章；这里继续收录第 2–21 章的结构、关键词、语法修辞、互涉、分段细读与和合本差异。每章都是一个入口，不是全文注释的替代。</p>
+        <div class="stats"><span>8 个章节</span><span>结构 / 语法 / 互涉</span><span>和合本对照</span><span>可独立阅读</span></div>
+        ${fontBar()}
+      </section>
+      <div class="library-grid">
+        ${chapters.map(c => `
+          <a class="study-card" href="${c.href}">
+            <div class="study-card-top"><span class="study-card-range">约 ${esc(c.range)}</span><span class="study-card-status ${c.done?'done':''}">${c.done?'已完成':'章节研读'}</span></div>
+            <h2>${esc(c.title)}</h2>
+            <p>${esc(c.summary)}</p>
+            <div class="card-meta">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>
+          </a>`).join('')}
+      </div>`;
+    bindFonts();
+  }
+
+  function renderArticle(){
+    const d = DATA[n];
+    if(!d){ renderLibrary(); return; }
+    const toc = d.sections.map((s,i)=>`<a href="#${esc(s.id)}"><span>${String(i+1).padStart(2,'0')}</span>${esc(s.label)}</a>`).join('');
+    $('#studyMain').innerHTML = `
+      <section class="lit-hero">
+        <div class="kicker">Literary Texture · 约翰福音 ${esc(d.range)}</div>
+        <h1>${esc(d.title)}</h1>
+        <p>${esc(d.summary)}</p>
+        <div class="stats"><span>${esc(d.range)}</span><span>${d.sections.length} 个研读段</span><span>结构 / 语法 / 互涉</span><span>和合本差异</span></div>
+        ${fontBar()}
+        <div class="chapter-switch">${chapters.map(c=>`<a class="${c.n===n?'active':''}" href="${c.href}">${c.n===1?'第1章':`第${c.n}章`}</a>`).join('')}</div>
+      </section>
+      <div class="lit-layout">
+        <aside class="lit-toc">
+          <div class="toc-kicker">Contents · 目录</div>
+          <h2>第 ${d.n} 章读法</h2>
+          ${toc}
+          <div class="toc-note">结构判断是阅读工具，不是唯一答案。</div>
+        </aside>
+        <article class="lit-article">
+          ${d.sections.map((s,i)=>`<section id="${esc(s.id)}"><h2>${esc(s.title)}</h2>${s.html}</section>`).join('')}
+          <div class="study-back">
+            <a href="?">全部章节</a>
+            <a href="john.html?chapter=${d.n}">回到第 ${d.n} 章经文</a>
+            <a href="john.html">全书阅读</a>
+          </div>
+        </article>
+      </div>`;
+    if(window.applyGreekGlosses) window.applyGreekGlosses($('#studyMain'));
+    bindFonts();
+  }
+
+  function bindFonts(){
+    const levels=[0.95,1.06,1.16,1.30,1.45];let i=2;
+    const btns=document.querySelectorAll('[data-lit-font]');
+    const resets=document.querySelectorAll('[data-lit-font-reset]');
+    function apply(v){i=Math.max(0,Math.min(levels.length-1,v));document.documentElement.style.setProperty('--read-scale',levels[i]);resets.forEach(b=>b.textContent=Math.round(levels[i]*100)+'%');try{localStorage.setItem('logos.studyFontLevel',String(i));}catch(e){}}
+    btns.forEach(b=>b.addEventListener('click',()=>apply(i+Number(b.dataset.litFont))));
+    resets.forEach(b=>b.addEventListener('click',()=>apply(2)));
+    try{const s=localStorage.getItem('logos.studyFontLevel');if(s!==null)apply(Number(s));}catch(e){}
+  }
+
+  if(n===1){ location.replace('john-literary.html'); return; }
+  if(current) renderArticle(); else renderLibrary();
+})();
+</script>
+</body>
+</html>

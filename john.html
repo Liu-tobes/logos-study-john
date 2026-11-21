@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<title>约翰福音 · 全书逐词 | ΛΟΓΟΣ</title>
+<link rel="stylesheet" href="john.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html" aria-label="返回原文研读示范">
+    <span class="brand-mark">Λ</span>
+    <span><b>ΛΟΓΟΣ · 道</b><small>JOHN · FULL BOOK</small></span>
+  </a>
+  <div class="top-title"><b>约翰福音 · 全书逐词</b><small>SBLGNT · CUV · MORPHOLOGY</small></div>
+  <nav class="top-nav">
+    <a class="top-link" href="index.html">1:1–5 研读示范</a>
+    <span class="type-inline" aria-label="阅读字号">
+      <span>字号</span>
+      <button type="button" data-font-step="-1" aria-label="缩小字号">A−</button>
+      <button type="button" class="val" data-font-reset title="恢复默认字号">116%</button>
+      <button type="button" data-font-step="1" aria-label="放大字号">A+</button>
+    </span>
+  </nav>
+</header>
+
+<div class="page">
+  <section class="hero">
+    <div class="hero-kicker">Gospel of John · A Word-by-Word Reader</div>
+    <h1>约翰<em>福音</em></h1>
+    <p>二十一章节，逐词展开。点击任何希腊词，查看它的形态、词元、Strong 编号与和合本上下文；桌面端在右侧、手机端在底部浮层阅读。</p>
+    <div class="hero-stats">
+      <span><b>21</b>章</span>
+      <span><b>879</b>节</span>
+      <span><b>15,438</b>词位</span>
+      <span><b>1,008</b>词元</span>
+      <span><b>SBLGNT</b>希腊文</span>
+      <span><b>CUV</b>和合本</span>
+      <button type="button" class="study-entry" id="openStudy">12 个重点段落研读 <span aria-hidden="true">→</span></button>
+      <a class="study-entry literary-entry" href="john-study.html">文学肌理 · 研读文库 <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <div class="chapter-bar" aria-label="章选择">
+    <button type="button" class="chapter-nav" id="prevChapter" aria-label="上一章">←</button>
+    <div class="chip-scroll" id="chapterChips"></div>
+    <button type="button" class="chapter-nav" id="nextChapter" aria-label="下一章">→</button>
+    <div class="chapter-meta" id="chapterMeta"></div>
+  </div>
+
+  <div class="reader-layout">
+    <main class="verse-list" id="verseList" aria-live="polite"></main>
+    <aside class="word-panel" aria-label="研读台">
+      <div class="panel-tabs">
+        <button type="button" class="panel-tab active" data-panel-tab="word">词形分析</button>
+        <button type="button" class="panel-tab" data-panel-tab="intertext">互涉背景 <small>15</small></button>
+        <button type="button" class="panel-tab" data-panel-tab="motif">母题雷达 <small>8</small></button>
+      </div>
+      <div id="wordPanelBody">
+        <div class="panel-empty">
+          <div class="panel-kicker">Word Study · 词形研读</div>
+          <h2>点击一个希腊词</h2>
+          <p>这里会显示它的词形、词元、Strong 编号与和合本所在句。手机端从底部展开，不打断你正在读的经文。</p>
+          <ul>
+            <li>希腊文按词位切分，标点保留在词间</li>
+            <li>形态码来自 SBLGNT / MorphGNT 标注</li>
+            <li>中文简释为人工整理；未收录词显示 STEPBible 英文简释</li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="sheetBackdrop"></div>
+<aside class="word-sheet" id="wordSheet" role="dialog" aria-modal="true" aria-label="研读台">
+  <div class="sheet-head"><span>STUDY DESK · 研读台</span><button type="button" class="sheet-close" id="sheetClose" aria-label="关闭">×</button></div>
+  <div class="panel-tabs sheet-tabs">
+    <button type="button" class="panel-tab active" data-panel-tab="word">词形分析</button>
+    <button type="button" class="panel-tab" data-panel-tab="intertext">互涉背景 <small>15</small></button>
+    <button type="button" class="panel-tab" data-panel-tab="motif">母题雷达 <small>8</small></button>
+  </div>
+  <div id="sheetBody"></div>
+</aside>
+
+<div class="study-backdrop" id="studyBackdrop">
+  <div class="study-modal" role="dialog" aria-modal="true" aria-labelledby="studyTitle">
+    <div class="study-head">
+      <div>
+        <div class="study-kicker">Passage Guide · 重点段落</div>
+        <h2 id="studyTitle">约翰福音的十二个入口</h2>
+        <p>从序言到结语，每张卡片给一个结构观察、一个和合本差异，并可直接跳回经文。</p>
+      </div>
+      <button type="button" class="study-close" id="studyClose" aria-label="关闭重点段落">×</button>
+    </div>
+    <div class="study-grid" id="studyGrid"></div>
+    <div class="study-foot">这些是研读提示，不是唯一释经结论；结构判断与翻译差异都应与经文上下文、其他译本和专业注释对读。</div>
+  </div>
+</div>
+
+<div class="study-backdrop" id="literaryBackdrop">
+  <div class="study-modal literary-modal" role="dialog" aria-modal="true" aria-labelledby="literaryTitle">
+    <div class="study-head">
+      <div>
+        <div class="study-kicker">Literary Texture · 文学肌理</div>
+        <h2 id="literaryTitle">道在结构中回响</h2>
+        <p>约翰福音 1:1–5 的交错、顶真、语法张力与和合本差异。这里是摘要版；完整互动版仍在研读示范页。</p>
+      </div>
+      <button type="button" class="study-close" id="literaryClose" aria-label="关闭文学肌理">×</button>
+    </div>
+
+    <div class="lit-body">
+      <h3>01 · 交错平行</h3>
+      <div class="lit-chi">
+        <div class="lit-row"><b>A</b><span lang="grc">Ἐν ἀρχῇ ἦν ὁ λόγος</span><em>太初有道</em></div>
+        <div class="lit-row"><b>B</b><span lang="grc">ὁ λόγος ἦν πρὸς τὸν θεόν</span><em>道与神同在</em></div>
+        <div class="lit-row"><b>C</b><span lang="grc">θεὸς ἦν ὁ λόγος</span><em>道就是神</em></div>
+        <div class="lit-row x"><b>X</b><span lang="grc">οὗτος ἦν ἐν ἀρχῇ πρὸς τὸν θεόν</span><em>这道太初与神同在</em></div>
+        <div class="lit-row"><b>C′</b><span lang="grc">πάντα δι’ αὐτοῦ ἐγένετο</span><em>万物借他而造</em></div>
+        <div class="lit-row"><b>B′</b><span lang="grc">ἐν αὐτῷ ζωὴ ἦν</span><em>生命在他里头</em></div>
+        <div class="lit-row"><b>A′</b><span lang="grc">τὸ φῶς ἐν τῇ σκοτίᾳ φαίνει</span><em>光照在黑暗里</em></div>
+      </div>
+
+      <h3>02 · 阶梯顶真</h3>
+      <div class="lit-chain">
+        <div><b>ζωή</b><span>生命</span></div><i>→</i>
+        <div><b>ἡ ζωή</b><span>这生命</span></div><i>→</i>
+        <div><b>τὸ φῶς</b><span>人的光</span></div><i>→</i>
+        <div><b>φαίνει</b><span>光照</span></div><i>→</i>
+        <div><b>ἡ σκοτία</b><span>黑暗</span></div>
+      </div>
+      <p class="lit-note">上一句的结尾成为下一句的起点；生命、光、黑暗不是并列概念，而是一步一步推进的叙事链。</p>
+
+      <h3>03 · 语法张力</h3>
+      <div class="lit-grid">
+        <article><b>谓语前置</b><span lang="grc">θεὸς ἦν ὁ λόγος</span><p>把“神”提前，强调道是神；和合本用“道就是神”重排为自然中文。</p></article>
+        <article><b>时态对照</b><span lang="grc">ἦν / ἐγένετο</span><p>道是“一直在”，万物是“被造成”；时态在划创造者与受造界的界线。</p></article>
+        <article><b>现在 vs 不定过去</b><span lang="grc">φαίνει / κατέλαβεν</span><p>光持续照耀；黑暗的抓取是一次动作，却没有成功。</p></article>
+        <article><b>多连词</b><span lang="grc">καί × 7</span><p>连续用“和”把分句串起来，制造缓慢、庄重、礼仪性的节奏。</p></article>
+      </div>
+
+      <h3>04 · 原文与和合本</h3>
+      <div class="lit-table">
+        <div class="lit-thead"><span>原文</span><span>逐词 / 语序</span><span>和合本</span></div>
+        <div><span lang="grc">Ἐν ἀρχῇ ἦν ὁ λόγος</span><span>在起初 是 那 道</span><em>太初有道</em></div>
+        <div><span lang="grc">θεὸς ἦν ὁ λόγος</span><span>神（谓语）是 道（主语）</span><em>道就是神</em></div>
+        <div><span lang="grc">τὸ φῶς ἐν τῇ σκοτίᾳ φαίνει</span><span>那光 在 那黑暗 照耀</span><em>光照在黑暗里</em></div>
+      </div>
+      <p class="lit-note">“神—是—道”只是希腊词序的中文速记，不是可逆等式；希腊文从左往右读，希伯来文才从右往左。</p>
+      <p class="lit-link"><a href="index.html">打开完整 1:1–5 研读示范：交互式交错图、术语表、互涉与原文 vs 和合本 →</a></p>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  <b>约翰福音全书逐词</b> · 原文：SBLGNT（CC BY 4.0）· 形态：SBLGNT / MorphGNT · 中文：和合本（CUV，公版）· 简释：STEPBible TBESG（CC BY 4.0）与人工整理。<br>
+  SBLGNT 未收 5:4 与 7:53–8:11（行淫时被拿的妇人段落）；这些节次仅列和合本，并在正文中标注。此页为研读原型，不替代校勘本或专业辞书。<br>
+  <a href="index.html">回到 1:1–5 文学肌理与研读示范</a>
+</footer>
+
+<script src="data/john/john-data.js"></script>
+<script src="data/john/zh-extra.js"></script>
+<script src="data/john/john-study.js"></script>
+<script src="data/john/john-chapters.js"></script>
+<script src="data/john/john-intertexts.js"></script>
+<script src="data/john/john-motifs.js"></script>
+<script src="data/john/john-deep.js"></script>
+<script src="data/john/john-deep-1b.js"></script>
+<script src="data/john/john-deep-2.js"></script>
+<script src="data/john/john-deep-3.js"></script>
+<script src="data/john/john-deep-4.js"></script>
+<script src="data/john/john-deep-5.js"></script>
+<script src="data/john/john-deep-6.js"></script>
+<script src="data/john/john-deep-7.js"></script>
+<script src="data/john/john-deep-8.js"></script>
+<script src="data/john/john-deep-10.js"></script>
+<script src="data/john/john-deep-11.js"></script>
+<script src="data/john/john-deep-12.js"></script>
+<script src="data/john/john-deep-13.js"></script>
+<script src="data/john/john-deep-14.js"></script>
+<script src="data/john/john-deep-18.js"></script>
+<script src="data/john/john-deep-19.js"></script>
+<script src="data/john/john-deep-15.js"></script>
+<script src="data/john/john-deep-16.js"></script>
+<script src="data/john/john-deep-17.js"></script>
+<script src="data/john/john-deep-20.js"></script>
+<script src="data/john/john-deep-21.js"></script>
+<script src="data/john/john-deep-9.js"></script>
+<script src="john.js"></script>
+</body>
+</html>
